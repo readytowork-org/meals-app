@@ -27,15 +27,16 @@ class MyApp extends StatelessWidget {
                 color: Color.fromRGBO(20, 51, 51, 1),
               ),
               headline6: const TextStyle(
-                fontSize: 20,
-                fontFamily: "RobotoCondensed",
-                fontWeight: FontWeight.bold
-              ),
+                  fontSize: 20,
+                  fontFamily: "RobotoCondensed",
+                  fontWeight: FontWeight.bold),
             ),
       ),
-      home: const CategoriesScreen(),
+      // home: CategoriesScreen(),
+      initialRoute: '/', // set initial route here. Default set to '/'
       routes: {
-        '/category-recipe':(ctx) => CategoryRecipeScreen() 
+        '/': (ctx) => CategoriesScreen(),
+        CategoryRecipeScreen.routeName: (ctx) => CategoryRecipeScreen()
       },
     );
   }
