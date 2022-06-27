@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './category_recipe_screen.dart';
 import './categories_screen.dart';
 
 void main() {
@@ -33,6 +34,9 @@ class MyApp extends StatelessWidget {
             ),
       ),
       home: const CategoriesScreen(),
+      routes: {
+        '/category-recipe':(ctx) => CategoryRecipeScreen() 
+      },
     );
   }
 }
