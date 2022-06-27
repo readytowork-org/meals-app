@@ -19,7 +19,7 @@ class CategoriesScreen extends StatelessWidget {
             crossAxisSpacing: 20,
             mainAxisSpacing: 20),
         children: DUMMY_CATEGORIES
-            .map((item) => CategoryItem(item.title, item.color))
+            .map((item) => CategoryItem(item.id, item.title, item.color))
             .toList(),
       ),
     );

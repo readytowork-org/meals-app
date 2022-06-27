@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/category_recipe_screen.dart';
+import './category_recipe_screen.dart';
 
 class CategoryItem extends StatelessWidget {
+  final String? id;
   final String? title;
   final Color? color;
 
-  CategoryItem(this.title, this.color);
+  CategoryItem(this.id, this.title, this.color);
 
   void showRecipe(BuildContext ctx) {
     Navigator.of(ctx).push(
       MaterialPageRoute(
         builder: (_) {
-          return CategoryRecipeScreen();
+          return CategoryRecipeScreen(id, title);
         },
       ),
     );
