@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import '../screens/meal_recipe_screen.dart';
 import '../models/meal.dart';
 
 class MealItem extends StatelessWidget {
+  final String? id;
   final String? title;
   final String? imageUrl;
   final int? duration;
@@ -11,6 +13,7 @@ class MealItem extends StatelessWidget {
   // ignore: prefer_const_constructors_in_immutables
   MealItem(
       {Key? key,
+      @required this.id,
       @required this.title,
       @required this.duration,
       @required this.complexity,
@@ -44,10 +47,15 @@ class MealItem extends StatelessWidget {
     }
   }
 
+void showRecipe(BuildContext ctx){
+  Navigator.of(ctx).pushNamed(MealRecipe.routeName, arguments: {
+    "id": id
+  });
+}
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => {},
+      onTap: () => showRecipe(context),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
