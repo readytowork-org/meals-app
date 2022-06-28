@@ -6,6 +6,7 @@ class CategoryItem extends StatelessWidget {
   final String? title;
   final Color? color;
 
+  // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
   CategoryItem(this.id, this.title, this.color);
 
   void showRecipe(BuildContext ctx) {
