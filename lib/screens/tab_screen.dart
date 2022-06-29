@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/screens/favourites_screen.dart';
+import './favourites_screen.dart';
 import './categories_screen.dart';
 
 class TabScreen extends StatefulWidget {
@@ -10,32 +10,46 @@ class TabScreen extends StatefulWidget {
 }
 
 class _TabScreenState extends State<TabScreen> {
+  final List<Map<String, Object>> _pages = [
+    {'page': CategoriesScreen(), 'title': 'Categories'},
+    {'page': FavouriteScreen(), 'title': 'Favourites'}
+  ];
+
+  int _selectedScreen = 0;
+
+  void _selectScreen(int index) {
+    setState(() {
+      _selectedScreen = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text("Meals"),
-          bottom: const TabBar(
-            tabs: [
-              Tab(
-                icon: Icon(Icons.category),
-                text: "Categories",
-              ),
-              Tab(
-                icon: Icon(Icons.favorite),
-                text: "Favourites",
-              )
-            ],
+    return Scaffold(
+      appBar: AppBar(
+        title:  Text(_pages[_selectedScreen]['title'].toString()),
+      ),
+      body: _pages[_selectedScreen]['page'] as Widget,
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: _selectScreen,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.pink.shade800,
+        currentIndex: _selectedScreen,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.category,
+            ),
+            label: 'Categories',
           ),
-        ),
-        body: TabBarView(
-          children: [
-            CategoriesScreen(),
-            FavouriteScreen()
-          ],
-        ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.favorite,
+            ),
+            label: 'Favourites',
+          )
+        ],
       ),
     );
   }
