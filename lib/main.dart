@@ -16,8 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'DeliMeals',
       theme: ThemeData(
         primaryColor: Colors.purple,
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
-            .copyWith(secondary: Colors.amber),
+         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.amber),
         canvasColor: const Color.fromRGBO(255, 254, 229, 1),
         fontFamily: 'Raleway',
         textTheme: ThemeData.light().textTheme.copyWith(
@@ -40,6 +39,22 @@ class MyApp extends StatelessWidget {
         CategoryMealScreen.routeName: (ctx) => CategoryMealScreen(),
         MealRecipe.routeName: (ctx) => MealRecipe()
       },
+      /** generate route name dynamically */
+      // onGenerateRoute: (settings){
+      //   // print(settings.arguments);
+      //   // return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
+      //   // if (settings.name == 'route-name') {
+      //   //     return ...
+      //   // }else if{
+      //   //   return ...
+      //   // }
+      //    or switch statement
+      // },
+
+      /**It is reached when all other are unreachable */
+      // onUnknownRoute: (settings){
+        // return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
+      // },
     );
   }
 }
