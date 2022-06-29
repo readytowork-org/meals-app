@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/screens/meal_recipe_screen.dart';
+import './screens/tab_screen.dart';
 import 'screens/category_meals_screen.dart';
-import './screens/categories_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +13,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'DeliMeals',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Colors.purple,
-         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.amber),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.pink).copyWith(secondary: Colors.amber),
         canvasColor: const Color.fromRGBO(255, 254, 229, 1),
         fontFamily: 'Raleway',
         textTheme: ThemeData.light().textTheme.copyWith(
@@ -35,7 +34,7 @@ class MyApp extends StatelessWidget {
       // home: CategoriesScreen(),
       initialRoute: '/', // set initial route here. Default set to '/'
       routes: {
-        '/': (ctx) => CategoriesScreen(),
+        '/': (ctx) => TabScreen(),
         CategoryMealScreen.routeName: (ctx) => CategoryMealScreen(),
         MealRecipe.routeName: (ctx) => MealRecipe()
       },
@@ -53,29 +52,9 @@ class MyApp extends StatelessWidget {
 
       /**It is reached when all other are unreachable */
       // onUnknownRoute: (settings){
-        // return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
+      // return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
       // },
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("DeliMeals"),
-      ),
-      body: const Center(
-        child: Text('Navigation time'),
-      ),
-    );
-  }
-}
