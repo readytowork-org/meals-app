@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../screens/filter_screen.dart';
 
 class MainDrawer extends StatelessWidget {
-  const MainDrawer({Key? key}) : super(key: key);
 
   Widget _buildDrawer(String title, IconData icon, Function navigateTo) {
     return ListTile(
@@ -51,14 +50,14 @@ class MainDrawer extends StatelessWidget {
             "Meals",
             Icons.restaurant,
             (){
-              Navigator.of(context).pushNamed('/');
+              Navigator.of(context).pushReplacementNamed('/');
             },
           ),
           _buildDrawer(
             "Filtered Meals",
             Icons.settings,
             (){
-              Navigator.of(context).pushNamed(FilteredScreen.routeName);
+              Navigator.of(context).pushReplacementNamed(FilteredScreen.routeName);
             },
           )
         ],
