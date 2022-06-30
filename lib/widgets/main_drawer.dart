@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import '../screens/filter_screen.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({Key? key}) : super(key: key);
 
-  Widget _buildDrawer(String title, IconData icon) {
+  Widget _buildDrawer(String title, IconData icon, Function navigateTo) {
     return ListTile(
       leading: Icon(
         icon,
@@ -17,6 +18,9 @@ class MainDrawer extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
+      onTap: (){
+        navigateTo();
+      }
     );
   }
 
@@ -43,8 +47,20 @@ class MainDrawer extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          _buildDrawer("Meals", Icons.restaurant),
-          _buildDrawer("Filtered Meals", Icons.filter)
+          _buildDrawer(
+            "Meals",
+            Icons.restaurant,
+            (){
+              Navigator.of(context).pushNamed('/');
+            },
+          ),
+          _buildDrawer(
+            "Filtered Meals",
+            Icons.settings,
+            (){
+              Navigator.of(context).pushNamed(FilteredScreen.routeName);
+            },
+          )
         ],
       ),
     );
