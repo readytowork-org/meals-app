@@ -9,6 +9,7 @@ class MealItem extends StatelessWidget {
   final int? duration;
   final Complexity? complexity;
   final Affordability? affordability;
+  final Function? removeItem;
 
   // ignore: prefer_const_constructors_in_immutables
   MealItem(
@@ -18,7 +19,9 @@ class MealItem extends StatelessWidget {
       @required this.duration,
       @required this.complexity,
       @required this.affordability,
-      @required this.imageUrl})
+      @required this.imageUrl,
+      @required this.removeItem
+      })
       : super(key: key);
 
   String get complexityText {
@@ -50,6 +53,10 @@ class MealItem extends StatelessWidget {
 void showRecipe(BuildContext ctx){
   Navigator.of(ctx).pushNamed(MealRecipe.routeName, arguments: {
     "id": id
+  }).then((result){
+    if (result != null) {
+      removeItem!(result);
+    }
   });
 }
   @override

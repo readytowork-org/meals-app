@@ -36,56 +36,63 @@ class MealRecipe extends StatelessWidget {
     }
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text(selectedMeal.title.toString()),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Container(
-                height: 300,
-                width: double.infinity,
-                child: Image.network(
-                  selectedMeal.imageUrl.toString(),
-                  fit: BoxFit.cover,
-                ),
+      appBar: AppBar(
+        title: Text(selectedMeal.title.toString()),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: 300,
+              width: double.infinity,
+              child: Image.network(
+                selectedMeal.imageUrl.toString(),
+                fit: BoxFit.cover,
               ),
-              _buildSectionTitle(context, "Ingredients"),
-              _buildSectionContent(
-                  context,
-                  ListView.builder(
-                    itemBuilder: ((context, index) {
-                      return Card(
-                        color: Theme.of(context).colorScheme.secondary,
-                        child: Text(selectedMeal.ingredients![index]),
-                      );
-                    }),
-                    itemCount: selectedMeal.ingredients!.length,
-                  )),
-              _buildSectionTitle(context, "Steps"),
-              _buildSectionContent(
+            ),
+            _buildSectionTitle(context, "Ingredients"),
+            _buildSectionContent(
                 context,
                 ListView.builder(
-                  itemBuilder: (ctx, index) {
-                    return Column(
-                      children: [
-                        ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor:
-                                Theme.of(context).colorScheme.secondary,
-                            child: Text('# ${index + 1}'),
-                          ),
-                          title: Text(selectedMeal.steps![index]),
-                        ),
-                        const Divider(),
-                      ],
+                  itemBuilder: ((context, index) {
+                    return Card(
+                      color: Theme.of(context).colorScheme.secondary,
+                      child: Text(selectedMeal.ingredients![index]),
                     );
-                  },
-                  itemCount: selectedMeal.steps!.length,
-                ),
-              )
-            ],
-          ),
-        ));
+                  }),
+                  itemCount: selectedMeal.ingredients!.length,
+                )),
+            _buildSectionTitle(context, "Steps"),
+            _buildSectionContent(
+              context,
+              ListView.builder(
+                itemBuilder: (ctx, index) {
+                  return Column(
+                    children: [
+                      ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor:
+                              Theme.of(context).colorScheme.secondary,
+                          child: Text('# ${index + 1}'),
+                        ),
+                        title: Text(selectedMeal.steps![index]),
+                      ),
+                      const Divider(),
+                    ],
+                  );
+                },
+                itemCount: selectedMeal.steps!.length,
+              ),
+            )
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.delete),
+        onPressed: () {
+          Navigator.of(context).pop(id);
+        },
+      ),
+    );
   }
 }
