@@ -1,11 +1,16 @@
+// ignore_for_file: prefer_const_constructors_in_immutables
+
 import 'package:flutter/material.dart';
 import '../widgets/meal_item.dart';
-import "../data/dummy_data.dart";
 import "../models/meal.dart";
 
 class CategoryMealScreen extends StatefulWidget {
   static const routeName = "/category-recipe";
 
+  final List<Meal> _availableMeals;
+
+  CategoryMealScreen(this._availableMeals, {Key? key}) : super(key: key);
+  
   @override
   State<CategoryMealScreen> createState() => _CategoryMealScreenState();
 }
@@ -29,7 +34,7 @@ class _CategoryMealScreenState extends State<CategoryMealScreen> {
           ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
       final id = routeArgs['id'];
       categoryTitle = routeArgs['title'];
-      displayedMeals = DUMMY_MEALS.where((meal) {
+      displayedMeals = widget._availableMeals.where((meal) {
         return meal.categories!.contains(id);
       }).toList();
       _loadedInitData = true;
