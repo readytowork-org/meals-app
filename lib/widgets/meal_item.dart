@@ -9,7 +9,6 @@ class MealItem extends StatelessWidget {
   final int? duration;
   final Complexity? complexity;
   final Affordability? affordability;
-  final Function? removeItem;
 
   // ignore: prefer_const_constructors_in_immutables
   MealItem(
@@ -20,7 +19,6 @@ class MealItem extends StatelessWidget {
       @required this.complexity,
       @required this.affordability,
       @required this.imageUrl,
-      @required this.removeItem
       })
       : super(key: key);
 
@@ -55,7 +53,6 @@ void showRecipe(BuildContext ctx){
     "id": id
   }).then((result){
     if (result != null) {
-      removeItem!(result);
     }
   });
 }
